@@ -4,6 +4,6 @@ def compute_probs(neg,pos):
   return [p0,p1]
 
 def test_it():
-  retun 'loaded'
+  return 'loaded'
   
   
