@@ -17,3 +17,18 @@ def cond_probs_product(table, evidence_values, target_column, target_val):
     cond_prob_list += [cond_prob_value]
   partial_numerator = up_product (cond_prob_list)
   return partial_numerator
+
+
+def prior_prob (table, target, target_value):
+  t_list = up_get_column(table, target)
+  p_a = sum([1 if v==target_value else 0 for v in t_list])/len(t_list)
+  return p_a
+
+
+def naive_bayes(table, evidence_row, target): 
+  target_value = 0
+  result1 = cond_probs_product(table, evidence_row, target, target_value)* prior_prob(table, target, target_value)
+  target_value = 1
+  result2 = cond_probs_product(table, evidence_row, target, target_value)* prior_prob(table, target, target_value) 
+  neg, pos = compute_probs(result1, result2)
+  return [neg, pos]
