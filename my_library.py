@@ -38,14 +38,3 @@ def naive_bayes(table, evidence_row, target):
   neg, pos = compute_probs(result1, result2)
   return [neg, pos]
 
-
-def metrics (zipped_list):
-  tn = sum([1 if pair==[0,0] else 0 for pair in zipped_list])
-  tp = sum([1 if pair==[1,1] else 0 for pair in zipped_list])
-  fp = sum([1 if pair==[1,0] else 0 for pair in zipped_list])
-  fn = sum([1 if pair==[0,1] else 0 for pair in zipped_list])
-  precision = tp/(tp + fp) if tp + fp > 0 else 0
-  recall = tp/(tp + fn) if tp + fn > 0 else 0
-  f1 = (2* precision * recall) / (precision + recall) if precision + recall > 0 else 0
-  accuracy = (tp + tn) / (tn+tp+fn+fp) 
-  return {'Precision': precision, 'Recall': recall, 'F1': f1, 'Accuracy': accuracy} 
