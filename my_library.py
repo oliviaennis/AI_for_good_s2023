@@ -81,8 +81,10 @@ def run_random_forest(train, test, target, n):
   return None
 
 
-for arch in all_architectures:
-  all_results = up_neural_net(train_table, test_table, arch, target)
+def try_archs(full_table, target, architectures, thresholds):
+  train_table, test_table = up_train_test_split(full_table, target, .4)
+  for arch in all_architectures:
+    all_results = up_neural_net(train_table, test_table, arch, target)
   #loop through thresholds
   all_mets = []
   for t in thresholds:
@@ -92,5 +94,12 @@ for arch in all_architectures:
     mets['Threshold'] = t
     all_mets += [mets] 
     all_mets[:2]
+
   print(f'Architecture: {arch}')
+  print(up_metrics_table(all_mets))
+
+  #copy paste code here
+
+
+  return None  #main use is to print out threshold tables, not return anything useful.
   print(up_metrics_table(all_mets))
