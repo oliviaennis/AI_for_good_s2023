@@ -43,7 +43,7 @@ def metrics (zipped_list):
   assert isinstance(zipped_list, list), f'parameter must be a list'
   assert all([isinstance(item, list) for item in zipped_list]), f'parameter must be a list of lists'
   assert all([len(item)==2 for item in zipped_list]), f'parameter must be a zipped list'
-  assert all([isinstance(a, int) and isinstance(b, int) for a,b in zipped_list]), f'each value must be an int'
+  assert all([isinstance(a, (int, float)) and isinstance(b, (int, float)) for a,b in zipped_list]), f'each value must be an int or a float'
   assert all(a >=0 and b>=0 for a,b in zipped_list), f'each value must be >= 0'
   tn = sum([1 if pair==[0,0] else 0 for pair in zipped_list])
   tp = sum([1 if pair==[1,1] else 0 for pair in zipped_list])
