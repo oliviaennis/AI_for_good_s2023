@@ -79,3 +79,18 @@ def run_random_forest(train, test, target, n):
   metrics_table
   print(metrics_table)  #output we really want - to see the table
   return None
+
+
+for arch in all_architectures:
+  all_results = up_neural_net(train_table, test_table, arch, target)
+  #loop through thresholds
+  all_mets = []
+  for t in thresholds:
+    all_predictions = [1 if pos>=t else 0 for neg,pos in all_results]
+    pred_act_list = up_zip_lists(all_predictions, up_get_column(test_table, target))
+    mets = metrics(pred_act_list)
+    mets['Threshold'] = t
+    all_mets += [mets] 
+    all_mets[:2]
+  print(f'Architecture: {arch}')
+  print(up_metrics_table(all_mets))
