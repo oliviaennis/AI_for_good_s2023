@@ -97,9 +97,5 @@ def try_archs(full_table, target, architectures, thresholds):
 
   print(f'Architecture: {arch}')
   print(up_metrics_table(all_mets))
-
-  #copy paste code here
-
-
   return None  #main use is to print out threshold tables, not return anything useful.
   print(up_metrics_table(all_mets))
